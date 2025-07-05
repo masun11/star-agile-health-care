@@ -26,9 +26,9 @@ pipeline {
                 sh 'groups'
                 sh 'docker ps'
                 sh 'docker version'
-                sh "docker build -t mausnulla/bankapp-eta-app:${BUILD_NUMBER} ."
-                sh "docker tag mausnulla/bankapp-eta-app:${BUILD_NUMBER} mausnulla/bankapp-eta-app:latest"
-                sh 'docker image ls | grep bankapp-eta-app'
+                sh "docker build -t mausnulla/healthcare-eta-app:${BUILD_NUMBER} ."
+                sh "docker tag mausnulla/healthcare-eta-app:${BUILD_NUMBER} mausnulla/healthcare-eta-app:latest"
+                sh 'docker image ls | grep healthcare-eta-app'
             }
         }
 
@@ -40,8 +40,8 @@ pipeline {
 
         stage('Push2DockerHub') {
             steps {
-                sh "docker push mausnulla/bankapp-eta-app:${BUILD_NUMBER}"
-                sh "docker push mausnulla/bankapp-eta-app:latest"
+                sh "docker push mausnulla/healthcare-eta-app:${BUILD_NUMBER}"
+                sh "docker push mausnulla/healthcare-eta-app:latest"
             }
         }
 
