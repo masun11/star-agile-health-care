@@ -1,36 +1,36 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: bankapp-eta-deploy
+  name: healthcare-eta-deploy
   labels:
-    app: bankapp-eta-app
+    app: healthcare-eta-app
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: bankapp-eta-app
+      app: healthcare-eta-app
   template:
     metadata:
       labels:
-        app: bankapp-eta-app
+        app: healthcare-eta-app
     spec:
       containers:
-      - name: bankapp-eta-container
+      - name: healthcare-eta-container
         image: mausnulla/healthcare-eta-app
         ports:
-        - containerPort: 8081   # ✅ Match the exposed port in the Docker image
+        - containerPort: 8082
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: bankapp-eta-np-service
+  name: healthcare-eta-np-service
   labels:
-    app: bankapp-eta-app
+    app: healthcare-eta-app
 spec:
   selector:
-    app: bankapp-eta-app
+    app: healthcare-eta-app
   type: NodePort
   ports:
-  - nodePort: 31032           # This is the exposed port on the Node (external)
-    port: 8082                # ✅ Port the service will expose internally
-    targetPort: 8081          # ✅ Match containerPort inside pod
+  - nodePort: 31034
+    port: 8082
+    targetPort: 8082
